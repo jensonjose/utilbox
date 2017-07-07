@@ -1,5 +1,12 @@
+def read_file(file_path):
+    with open(file_path, "r") as target_file:
+        return target_file.read()
+
+# retrieve information from package files
+package_version = read_file("VERSION.txt")
+
 config_map = {
-    "version": "0.1.3",
+    "version": package_version,
     "author": "Jenson Jose",
     "settings": {
         "dependencies": {

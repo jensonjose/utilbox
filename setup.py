@@ -1,3 +1,7 @@
+"""
+Setup module for the utilbox package.
+"""
+
 import setuptools
     
 
@@ -9,6 +13,7 @@ def read_file(file_path):
 package_version = read_file("VERSION.txt")
 package_requirements = read_file("requirements.txt").splitlines()
 package_long_description = read_file("README.md")
+package_list = setuptools.find_packages(exclude=["tests"])
 
 config = {
     "name": "utilbox",
@@ -16,11 +21,14 @@ config = {
     "long_description": package_long_description,
     "author": "Jenson Jose",
     "author_email": "jensonjose@live.in",
+    "license": "MIT",
+    "platforms": ["Any"],
     "url": "https://github.com/jensonjose/utilbox",
     "version": package_version,
     "install_requires": package_requirements,
-    "install_package_data": True,
-    "packages": setuptools.find_packages(exclude=["tests"]),
+    "packages": package_list,
+    "package_data": {"": ["*.txt"]},
+    "include_package_data": True,
     "classifiers": ["Development Status :: 3 - Alpha",
                     "Environment :: Console",
                     "Intended Audience :: Developers",

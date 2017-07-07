@@ -28,11 +28,17 @@ string_utils | StringUtils, TextUtils | Manipulate strings and multi-line text
 
 ## Installation
 
-To install the package:
+### Install using `pip`
 
-*   Download the source archive and extract it to a temporary location
+Make sure you have `pip` installed on your system, and then run:
+
+```pip install utilbox```
+
+### Install from sources
+
+*   Download the [latest release] from `GitHub` and extract it to a temporary location
 *   Open your terminal and `cd` to the extracted archive directory
-*   Run `python setup.py install` (admin privileges may be required)
+*   Run `python setup.py install`
 
 ### Dependencies
 
@@ -114,5 +120,6 @@ To contribute, simply:
 *   Push committed changes to your branch
 *   If you're happy and you know it, create a new `PULL` request
 
+[latest release]: https://github.com/jensonjose/utilbox/releases/latest
 [Jenson Jose]: https://www.jensonjose.com
 [@JoseJenson]: https://twitter.com/JoseJenson

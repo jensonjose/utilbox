@@ -6,6 +6,13 @@ The format of this file is based on [Keep a Changelog].
 
 ## Unreleased
 
+## [0.1.3] - 2017-07-08
+### Added
+*   Additional packaging files for PyPI compliance
+
+### Changed
+*   Updated packaging information to include PyPI classifiers
+
 ## [0.1.2] - 2017-07-07
 ### Changed
 *   Corrected package name in setup script
@@ -25,6 +32,7 @@ The format of this file is based on [Keep a Changelog].
 [Keep a Changelog]: http://keepachangelog.com
 
 [Unreleased]: https://github.com/jensonjose/utilbox
+[0.1.3]: https://github.com/jensonjose/utilbox/releases/tag/0.1.3
 [0.1.2]: https://github.com/jensonjose/utilbox/releases/tag/0.1.2
 [0.1.1]: https://github.com/jensonjose/utilbox/releases/tag/0.1.1
 [0.1.0]: https://github.com/jensonjose/utilbox/releases/tag/0.1.0

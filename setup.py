@@ -16,6 +16,7 @@ config = {
     "long_description": package_long_description,
     "author": "Jenson Jose",
     "author_email": "jensonjose@live.in",
+    "url": "https://github.com/jensonjose/utilbox",
     "version": package_version,
     "install_requires": package_requirements,
     "packages": setuptools.find_packages(exclude=["tests"]),

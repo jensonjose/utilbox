@@ -1,5 +1,5 @@
 config_map = {
-    "version": "0.1.2",
+    "version": "0.1.3",
     "author": "Jenson Jose",
     "settings": {
         "dependencies": {

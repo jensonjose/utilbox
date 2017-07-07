@@ -19,6 +19,7 @@ config = {
     "url": "https://github.com/jensonjose/utilbox",
     "version": package_version,
     "install_requires": package_requirements,
+    "install_package_data": True,
     "packages": setuptools.find_packages(exclude=["tests"]),
     "classifiers": ["Development Status :: 3 - Alpha",
                     "Environment :: Console",

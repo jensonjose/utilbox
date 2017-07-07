@@ -19,6 +19,16 @@ config = {
     "version": package_version,
     "install_requires": package_requirements,
     "packages": setuptools.find_packages(exclude=["tests"]),
+    "classifiers": ["Development Status :: 3 - Alpha",
+                    "Environment :: Console",
+                    "Intended Audience :: Developers",
+                    "License :: OSI Approved :: MIT License",
+                    "Natural Language :: English",
+                    "Operating System :: OS Independent",
+                    "Programming Language :: Python :: 2.7",
+                    "Topic :: Software Development",
+                    "Topic :: Software Development :: Libraries :: Python Modules",
+                    "Topic :: Utilities"]
 }
 
 setuptools.setup(**config)

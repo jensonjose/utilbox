@@ -11,7 +11,7 @@ package_requirements = read_file("requirements.txt").splitlines()
 package_long_description = read_file("README.md")
 
 config = {
-    "name": "utils",
+    "name": "utilbox",
     "description": "Collection of utility packages for Python.",
     "long_description": package_long_description,
     "author": "Jenson Jose",

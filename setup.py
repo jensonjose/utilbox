@@ -3,6 +3,7 @@ Setup module for the utilbox package.
 """
 
 import setuptools
+from utilbox import __conf__
     
 
 def read_file(file_path):
@@ -10,7 +11,7 @@ def read_file(file_path):
         return target_file.read()
 
 # retrieve information from package files
-package_version = read_file("VERSION.txt")
+package_version = __conf__.config_map["version"]
 package_requirements = read_file("requirements.txt").splitlines()
 package_long_description = read_file("README.md")
 package_list = setuptools.find_packages(exclude=["tests"])
@@ -27,8 +28,6 @@ config = {
     "version": package_version,
     "install_requires": package_requirements,
     "packages": package_list,
-    "package_data": {"": ["*.txt"]},
-    "include_package_data": True,
     "classifiers": ["Development Status :: 3 - Alpha",
                     "Environment :: Console",
                     "Intended Audience :: Developers",

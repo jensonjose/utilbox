@@ -5,6 +5,9 @@ This project adheres to [Semantic Versioning].
 The format of this file is based on [Keep a Changelog].
 
 ## Unreleased
+## [0.1.6] - 2017-07-08
+### Fixed
+*   Updated packaging to fix issues with pip installation
 
 ## [0.1.5] - 2017-07-08
 ### Fixed
@@ -43,6 +46,7 @@ The format of this file is based on [Keep a Changelog].
 [Keep a Changelog]: http://keepachangelog.com
 
 [Unreleased]: https://github.com/jensonjose/utilbox
+[0.1.6]: https://github.com/jensonjose/utilbox/releases/tag/0.1.6
 [0.1.5]: https://github.com/jensonjose/utilbox/releases/tag/0.1.5
 [0.1.4]: https://github.com/jensonjose/utilbox/releases/tag/0.1.4
 [0.1.3]: https://github.com/jensonjose/utilbox/releases/tag/0.1.3

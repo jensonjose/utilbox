@@ -11,4 +11,9 @@ install:
   - pip install -r requirements.txt
 
 # run tests
-script: nosetests
+script:
+  - nosetests
+  - coverage run --source=utilbox setup.py test
+
+after_success:
+  - coveralls

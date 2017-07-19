@@ -3,6 +3,8 @@
 > `utilbox` is a collection of Python utility packages to help you save time and avoid writing code for commonly
 required tasks.
 
+[![Build Status](https://travis-ci.org/jensonjose/utilbox.svg?branch=master)](https://travis-ci.org/jensonjose/utilbox) [![Coverage Status](https://coveralls.io/repos/github/jensonjose/utilbox/badge.svg?branch=master)](https://coveralls.io/github/jensonjose/utilbox?branch=master)
+
 The current set of utilities cover the following areas:
 
 *   Encryption

@@ -1,0 +1,14 @@
+# language used by project
+language: python
+
+# language version used by project
+python:
+  - "2.7"
+
+# install dependencies
+install:
+  - pip install .
+  - pip install -r requirements.txt
+
+# run tests
+script: nosetests

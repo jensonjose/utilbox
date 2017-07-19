@@ -1,6 +1,4 @@
-import os
 import sys
-import json
 
 # CHECK DEPENDENCIES
 
@@ -19,3 +17,7 @@ except ImportError:
 __author__ = config["author"]
 __version__ = config["version"]
 __version_info__ = tuple([int(d) for d in __version__.split(".")])
+
+# DEFINE IMPORTABLE CLASSES IN THIS PACKAGE
+
+# not needed as all packages are required

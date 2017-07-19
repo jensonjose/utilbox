@@ -5,7 +5,7 @@ Utility module to handle manipulation of numeric data.
 
 __author__ = "Jenson Jose"
 __email__ = "jensonjose@live.in"
-__status__ = "Production"
+__status__ = "Alpha"
 
 
 class NumberUtils():

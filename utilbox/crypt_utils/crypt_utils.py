@@ -8,7 +8,7 @@ from Crypto.Cipher import AES
 
 __author__ = "Jenson Jose"
 __email__ = "jensonjose@live.in"
-__status__ = "Production"
+__status__ = "Alpha"
 
 
 class CryptUtils:

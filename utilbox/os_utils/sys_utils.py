@@ -129,3 +129,49 @@ class SysUtils:
         """
 
         sys.exit(exit_code)
+
+    @staticmethod
+    def start_process(process_args, wait_for_completion=True, disable_popup=True):
+        """
+        Start a new process with the specified arguments.
+
+        :param process_args: The arguments to be passed to the new process.
+        :param wait_for_completion: Wait till the completion of the process.
+        :param disable_popup: Prevent the process from opening any windows.
+
+        :return: Popen instance if process was opened successfully, False otherwise.
+        :rtype: Popen
+        """
+
+        import subprocess
+
+        try:
+            if SysUtils.get_platform() == "Windows":
+                if wait_for_completion:
+                    if disable_popup:
+                        startupinfo = subprocess.STARTUPINFO()
+                        startupinfo.dwFlags = subprocess.STARTF_USESTDHANDLES | subprocess.STARTF_USESHOWWINDOW
+
+                        return subprocess.Popen(process_args,
+                                                startupinfo=startupinfo).wait()
+                    else:
+                        return subprocess.Popen(process_args).wait()
+                elif disable_popup:
+                    startupinfo = subprocess.STARTUPINFO()
+                    startupinfo.dwFlags = subprocess.STARTF_USESTDHANDLES | subprocess.STARTF_USESHOWWINDOW
+
+                    return subprocess.Popen(process_args,
+                                            startupinfo=startupinfo)
+                else:
+                    return subprocess.Popen(process_args)
+            else:
+                if wait_for_completion:
+                    return subprocess.call(
+                        args=process_args,
+                        shell=disable_popup)
+                else:
+                    return subprocess.Popen(
+                        args=process_args,
+                        shell=disable_popup)
+        except:
+            return False

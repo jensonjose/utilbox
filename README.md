@@ -5,7 +5,7 @@ required tasks.
 
 [![Build Status](https://travis-ci.org/jensonjose/utilbox.svg?branch=master)](https://travis-ci.org/jensonjose/utilbox) [![Coverage Status](https://coveralls.io/repos/github/jensonjose/utilbox/badge.svg?branch=master)](https://coveralls.io/github/jensonjose/utilbox?branch=master)
 
-The current set of utilities cover the following areas:
+The current set of capabilities cover the following areas:
 
 *   Encryption
 *   JSON manipulation
@@ -28,6 +28,8 @@ os_utils | SysUtils, FileUtils, DirUtils | Manipulate files, directories and int
 spreadsheet_utils | ExcelUtils, CsvUtils | Work with spreadsheets and CSV files
 string_utils | StringUtils, TextUtils | Manipulate strings and multi-line text
 
+For detailed documentation, refer the [UtilBox wiki](https://github.com/jensonjose/utilbox/wiki).
+
 ## Installation
 
 ### Install using `pip`
@@ -38,7 +40,7 @@ Make sure you have `pip` installed on your system, and then run:
 
 ### Install from sources
 
-*   Download the [latest release] from `GitHub` and extract it to a temporary location
+*   Download the [latest release](https://github.com/jensonjose/utilbox/releases/latest) from `GitHub` and extract it to a temporary location
 *   Open your terminal and `cd` to the extracted archive directory
 *   Run `python setup.py install`
 
@@ -96,7 +98,10 @@ mailer.send_mail_plain("receiver@example2.com", "This is a test mail", sender_em
 mailer.send_mail_plain("receiver@example2.com", "This is a test mail", sender_email_id, "This message was brought to you by <b>'utilbox'<b>!")
 ```
 
-`utilbox` is being updated constantly, so feel free to send in any suggestions for new features or issues with existing ones. Enjoy! 
+To use the latest *bleeding-edge*, but possibly unstable version of the code, clone the `master` branch.  
+To use the latest *stable* code, download the latest release from the [releases](https://github.com/jensonjose/utilbox/releases) page. 
+
+`utilbox` is being continuously developed and upgraded to be as comprehensive as possible, and any suggestions are most welcome.
 
 ## Release history
 
@@ -108,8 +113,8 @@ See `LICENSE.txt` for license information.
 
 ## Author
 
-[Jenson Jose]  
-Follow me [@JoseJenson]  
+[Jenson Jose](https://www.jensonjose.com)  
+Follow me [@JoseJenson](https://twitter.com/JoseJenson)  
 Send your suggestions / feedback at `jensonjose@live.in`
 
 ### How to contribute
@@ -121,7 +126,3 @@ To contribute, simply:
 *   Commit your changes
 *   Push committed changes to your branch
 *   If you're happy and you know it, create a new `PULL` request
-
-[latest release]: https://github.com/jensonjose/utilbox/releases/latest
-[Jenson Jose]: https://www.jensonjose.com
-[@JoseJenson]: https://twitter.com/JoseJenson

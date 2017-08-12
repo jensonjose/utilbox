@@ -22,20 +22,20 @@ class FileUtils:
         pass
 
     @staticmethod
-    def check_file_exists(file_path):
+    def check_valid_file(file_path):
         """
         Checks if the given path points to a file or not.
 
         :param file_path: The full path of the file to be verified.
 
-        :return: True, is specified path points to a file, False otherwise.
+        :return: True, if specified path points to a valid file, False otherwise.
         :rtype: bool
         """
 
         if os.path.isfile(file_path):
             return True
 
-        return False
+        raise False
 
     @staticmethod
     def get_file_extension(file_path):
@@ -81,7 +81,7 @@ class FileUtils:
         :rtype: str
         """
 
-        if FileUtils.check_file_exists(file_path):
+        if FileUtils.check_valid_file(file_path):
             if FileUtils.get_file_metadata(file_path)["FILE_SIZE"] > 0:
                 file_lines = FileUtils.read_file(file_path)
 
@@ -175,7 +175,7 @@ class FileUtils:
             csv_reader = csv.DictReader(open(csv_file_path))
 
             return csv_reader
-        except Exception as ex:
+        except:
             return False
 
     @staticmethod
@@ -185,7 +185,9 @@ class FileUtils:
          - Last modified time
          - File size
          - File name
-         - File directory
+         - File parent directory
+         - File full path
+         - File extension
 
         :param file_path: The full path of the file to be analyzed.
         :param size_unit: Units in which to report file size.
@@ -195,27 +197,56 @@ class FileUtils:
         :rtype: dict
         """
 
-        last_modified_time = datetime.datetime.fromtimestamp(os.path.getmtime(file_path)).strftime(time_format)
+        if FileUtils.check_valid_file(file_path):
+            last_modified_time = datetime.datetime.fromtimestamp(os.path.getmtime(file_path)).strftime(time_format)
 
-        # get file size in bytes
-        file_size = os.path.getsize(file_path)
-        base_unit = 1024.0
-        decimal_limit = 2
+            # get file size in bytes
+            file_size = os.path.getsize(file_path)
+            base_unit = 1024.0
+            decimal_limit = 2
 
-        if size_unit == "b":
-            pass
-        elif size_unit == "k":
-            file_size /= base_unit
-        elif size_unit == "m":
-            file_size = (file_size / base_unit) / base_unit
-        elif size_unit == "g":
-            file_size = ((file_size / base_unit) / base_unit) / base_unit
+            if size_unit == "b":
+                pass
+            elif size_unit == "k":
+                file_size /= base_unit
+            elif size_unit == "m":
+                file_size = (file_size / base_unit) / base_unit
+            elif size_unit == "g":
+                file_size = ((file_size / base_unit) / base_unit) / base_unit
 
-        # limit floating-point value to X decimal points
-        if size_unit != "b":
-            file_size = round(file_size, decimal_limit)
+            # limit floating-point value to X decimal points
+            if size_unit != "b":
+                file_size = round(file_size, decimal_limit)
 
-        return {"FILE_LAST_MODIFIED": str(last_modified_time),
-                "FILE_SIZE": str(file_size),
-                "FILE_NAME": str(os.path.basename(file_path)),
-                "FILE_DIRECTORY": str(os.path.dirname(file_path))}
+            return {"LAST_MODIFIED": str(last_modified_time),
+                    "SIZE": str(file_size),
+                    "NAME": str(os.path.basename(file_path)),
+                    "PARENT_DIRECTORY": str(os.path.dirname(file_path)),
+                    "FULL_PATH": str(file_path),
+                    "EXTENSION": FileUtils.get_file_extension(file_path)}
+
+        return False
+
+    @staticmethod
+    def get_file_directory(file_path):
+        """
+        Returns the directory path of the specified file.
+
+        :param file_path: The full path of the file.
+
+        :return: The directory path of the file.
+        :rtype: str
+        """
+
+        if FileUtils.check_valid_file(file_path):
+            return str(os.path.dirname(file_path))
+
+        return False
+
+    @staticmethod
+    def detect_file_type():
+        """
+        Detects the file type and returns the identified type string.
+        """
+
+        pass

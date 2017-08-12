@@ -44,8 +44,6 @@ class DirUtils:
         """
         Combines list of supplied path components to create a full directory path.
 
-        Main use is to keep the actual code clutter-free.
-
         :param path_components: List of components to be part of the final directory path.
         :param separator: Separator to be used for isolating directory path components.
 
@@ -119,5 +117,113 @@ class DirUtils:
 
         if shutil.make_archive(output_file_name, archive_format.lower(), source_path):
             return True
+
+        return False
+
+    @staticmethod
+    def get_dir_contents(source_dir, filter_pattern=None, meta_data=False):
+        """
+        Returns a list of directory contents matching the supplied search pattern.
+
+        If no pattern is supplied all directory contents are returned.
+
+        :param source_dir: The path of the directory to be searched.
+        :param filter_pattern: The pattern to be used to search the directory.
+        :param meta_data: If True, returns a list of dictionaries containing meta data of each individual entry.
+
+        :return: List of matching entries if the directory is valid, False otherwise.
+        :rtype: list
+        """
+
+        from utilbox.os_utils import FileUtils
+
+        filtered_entry_list = []
+
+        if DirUtils.check_valid_dir(source_dir):
+            dir_entries = os.listdir(source_dir)
+
+            for dir_entry in dir_entries:
+                if filter_pattern is not None:
+                    import re
+
+                    compiled_pattern = re.compile(filter_pattern)
+                    if len(compiled_pattern.findall(dir_entry)) > 0:
+                        if meta_data:
+                            dir_entry_path = DirUtils.create_dir_path_string([source_dir,
+                                                                              dir_entry])
+
+                            if DirUtils.check_valid_dir(dir_entry_path):
+                                meta_data = DirUtils.get_dir_metadata(dir_entry_path)
+                            elif FileUtils.check_valid_file(dir_entry_path):
+                                meta_data = FileUtils.get_file_metadata(dir_entry_path)
+
+                            if meta_data:
+                                filtered_entry_list.append(meta_data)
+                        else:
+                            filtered_entry_list.append(dir_entry)
+                else:
+                    if meta_data:
+                        dir_entry_path = DirUtils.create_dir_path_string([source_dir,
+                                                                          dir_entry])
+
+                        if DirUtils.check_valid_dir(dir_entry_path):
+                            meta_data = DirUtils.get_dir_metadata(dir_entry_path)
+                        elif FileUtils.check_valid_file(dir_entry_path):
+                            meta_data = FileUtils.get_file_metadata(dir_entry_path)
+
+                        if meta_data:
+                            filtered_entry_list.append(meta_data)
+                    else:
+                        filtered_entry_list.append(dir_entry)
+
+            return filtered_entry_list
+
+        return False
+
+    @staticmethod
+    def get_dir_metadata(dir_path, size_unit="k", time_format="%Y-%m-%d %I:%M:%S"):
+        """
+        Returns directory meta-data containing,
+         - Last modified time
+         - Directory size (sum of all file sizes)
+         - Directory name
+         - Directory parent directory
+         - Directory full path
+
+        :param dir_path: The full path of the directory to be analyzed.
+        :param size_unit: Units in which to report directory size.
+        :param time_format: Format in which to report directory modification time.
+
+        :return: Dictionary containing relevant directory meta data.
+        :rtype: dict
+        """
+
+        if DirUtils.check_valid_dir(dir_path):
+            import datetime
+            last_modified_time = datetime.datetime.fromtimestamp(os.path.getmtime(dir_path)).strftime(time_format)
+
+            # get file size in bytes
+            file_size = os.path.getsize(dir_path)
+            base_unit = 1024.0
+            decimal_limit = 2
+
+            if size_unit == "b":
+                pass
+            elif size_unit == "k":
+                file_size /= base_unit
+            elif size_unit == "m":
+                file_size = (file_size / base_unit) / base_unit
+            elif size_unit == "g":
+                file_size = ((file_size / base_unit) / base_unit) / base_unit
+
+            # limit floating-point value to X decimal points
+            if size_unit != "b":
+                file_size = round(file_size, decimal_limit)
+
+            return {"LAST_MODIFIED": str(last_modified_time),
+                    "SIZE": str(file_size),
+                    "NAME": str(os.path.basename(dir_path)),
+                    "PARENT_DIRECTORY": str(os.path.dirname(dir_path)),
+                    "FULL_PATH": str(dir_path)}
 
         return False
